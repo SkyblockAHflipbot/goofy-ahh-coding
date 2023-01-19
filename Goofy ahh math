@@ -1,0 +1,25 @@
+# U nit 1.2  Math+logic
+# 1A: numbers
+print(1+1)
+print(127381273987129847-91827398172412984)
+print(1098273019283*982834092834)
+print(21390712/129381)
+# division/
+# floor division//
+# modulo%
+print(891273981273 % 118971238)
+#Powers
+print(10**34)
+#sample strings
+Sample_string = "goofy ahh productions "
+Sample_string = Sample_string + Sample_string + Sample_string + Sample_string + Sample_string
+print(Sample_string * 10)
+x=2
+print(x == 2 and x != 1)
+print(x == 3 or x == 2)
+print("string" == "strang" or "" == " ")
+#variable mat
+count = 0
+print(count)
+count += 1
+print(count)
