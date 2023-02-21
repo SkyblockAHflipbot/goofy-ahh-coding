@@ -1,0 +1,25 @@
+import random
+rando = random.randrange(1 , 10)
+#comes up with the number here
+guess = int(input("enter a number 1-10: "))
+while rando!= guess: 
+    if guess < rando:
+        print("wrong")
+        guess = int(input("enter number once again?: "))
+    elif guess > rando:
+        print("wrong")
+        guess = int(input("enter number once again.: "))
+    else:
+        break
+print("you got it!")
+#the entire while loop is for when you guess the number to tell you if you got it right or wrong.
+
+
+# next
+name = input("enter your name: ")
+
+while name == "":
+    print("you did not enter your name")
+    Name = input("Enter your name: ")
+else:
+    print(f"Hello {name}")
