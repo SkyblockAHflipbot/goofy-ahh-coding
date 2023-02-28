@@ -1,0 +1,42 @@
+name = input("enter your name: ")
+
+if len(name) == 1:
+    print("no")
+elif len(name) < 4 > 1:
+    print ("hm")
+elif len(name) < 6 > 4:
+    print("huh")
+else:
+    for num in name: 
+        print("de")
+#the establishing party with name = input and enter your name is so that whats entered is put into the variable of name,
+#that is then put into a series of statements figuring out the length and printing it based on the length.
+
+answer = int(input("Whats 10+10: "))
+
+while answer == 20:
+    print(f"Great job!")
+    break
+else:
+    print("Retry")
+    answer = int(input("Whats 10+10: "))
+
+var = input
+def check_numbes(num):
+    if num % 1 == 0: True
+    else: num == False
+
+def check(name):
+    for num in name:
+        if check_numbes(num) == True:
+            return True
+    return False
+
+check(name)
+while check(name) == True:
+    print("Wrong")
+    name = input("enter your first name:")
+else:
+    print("Okay")
+
+print(name = input("enter your first name:"))
