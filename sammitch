@@ -1,0 +1,11 @@
+#First you go to the store and buy all of your inredients which for our sandwhich inclues provalone, lettuce, itallian loaf, and turkey.
+#Slice the lettuce and bread and put a slice of bread onto a plate. Place lettuce first, then provalone, then turkey, then your seconed slice of bread.
+#Congradulations, You have made a sandwitch. 
+def globn():
+    m, n = 8, 2
+    print(min(m, n) if m % 2 or n % 2 else min(m, n))
+globn()
+
+#First letter, t/f
+def letter_split(sentance) :
+    words = sentance.split()
