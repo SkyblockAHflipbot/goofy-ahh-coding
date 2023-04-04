@@ -1,0 +1,58 @@
+def main():
+    spots = {1 : '1' , 2 : '2' , 3 : '3' , 4 : '4' , 5 : '5' , 6 : '6' , 7 : '7' , 8 : '8' , 9 : '9'}
+    def board(spots): 
+        board1 =print(f" {spots[1]}|{spots[2]}|{spots[3]} ") 
+        print(f"______")
+        print(f" {spots[4]}|{spots[5]}|{spots[6]} ")
+        print(f"______")
+        print(f" {spots[7]}|{spots[8]}|{spots[9]} ")
+        print(board1)
+    def turn_checker(turn):
+        if turn % 2 ==0: return 'O' 
+        else: return 'x'
+    def play_again(yes):
+        if yes == "y" : return main()
+    def checkw(spots):
+        if  (spots[1] == spots[2] == spots[3]) \
+        or  (spots[4] == spots[5] == spots[6]) \
+        or  (spots[7] == spots[8] == spots[9]):
+            return True
+    #previous checks horizontals after checks verticles and diagnals
+        elif  (spots[1] == spots[4] == spots[7]) \
+        or  (spots[2] == spots[5] == spots[8]) \
+        or  (spots[3] == spots[6] == spots[9]):
+            return True
+        elif  (spots[1] == spots[5] == spots[9]) \
+        or  (spots[3] == spots[5] == spots[7]):
+            return True
+        else: return False
+
+    playing = True
+    turn = 0
+    last_turn = -1
+    while playing:
+        board(spots)
+        if last_turn == turn: 
+            print ("Invalid play. please try again.")
+        last_turn = turn
+
+        print("player " + str((turn % 2) +1) + " 's turn: pick your spot to cancel w/ the q keybind")
+    
+        choice = input()
+        if choice == 'q':
+            playing = False
+        elif str.isdigit(choice) and int(choice) in spots:
+            if not spots[int(choice)] in {"x" "o"}:
+                turn += 1 
+                spots[int(choice)] = turn_checker(turn)
+        if checkw(spots): playing, complete = False, True
+        if turn > 8: playing = False
+    board(spots)
+    if complete:
+        if turn_checker(turn) == 'x': print ("Player 1 wins!")
+        else: print ("player 2 wins!")
+        print("Would you like to play again y for yes, n for no")
+        yes = int(input("yes or no:"))
+
+
+main()
