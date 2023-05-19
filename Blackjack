@@ -1,0 +1,89 @@
+import random
+
+# define the cards and their values
+cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+card_values = {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 10, 'Q': 10, 'K': 10, 'A': 11}
+
+# define the player and dealer classes
+class Player:
+    def __init__(self, name, money):
+        self.name = name
+        self.money = money
+        self.hand = []
+        self.hand_value = 0
+        self.bet = 0
+        self.insurance = False
+        
+    def draw_card(self, card):
+        self.hand.append(card)
+        self.hand_value += card_values[card]
+        if self.hand_value > 21 and 'A' in self.hand:
+            self.hand_value -= 10
+            self.hand.remove('A')
+            
+    def place_bet(self, bet_amount):
+        self.money -= bet_amount
+        self.bet = bet_amount
+        
+class Dealer:
+    def __init__(self):
+        self.hand = []
+        self.hand_value = 0
+        
+    def draw_card(self, card):
+        self.hand.append(card)
+        self.hand_value += card_values[card]
+        if self.hand_value > 21 and 'A' in self.hand:
+            self.hand_value -= 10
+            self.hand.remove('A')
+            
+# define the deck and shuffle function
+def create_deck():
+    deck = cards * 4
+    random.shuffle(deck)
+    return deck
+
+# define the game logic
+def blackjack():
+    player = Player('Player', 100)
+    dealer = Dealer()
+    deck = create_deck()
+    
+    while player.money > 0:
+        print(f"\n{player.name}'s money: ${player.money}")
+        bet_amount = int(input("Enter your bet amount: "))
+        player.place_bet(bet_amount)
+        
+        # deal cards
+        player.draw_card(deck.pop())
+        dealer.draw_card(deck.pop())
+        player.draw_card(deck.pop())
+        dealer.draw_card(deck.pop())
+        
+        # show hands
+        print(f"\n{player.name}'s hand: {player.hand} ({player.hand_value})")
+        print(f"Dealer's hand: ['*', '{dealer.hand[1]}']\n")
+        
+        # player's turn
+        while player.hand_value < 21:
+            action = input("Enter 'h' to hit or 's' to stay: ")
+            if action == 'h':
+                player.draw_card(deck.pop())
+                print(f"{player.name}'s hand: {player.hand} ({player.hand_value})\n")
+            elif action == 's':
+                break
+                
+        # dealer's turn
+        while dealer.hand_value < 17:
+            dealer.draw_card(deck.pop())
+        
+        # determine the winner
+        print(f"\n{player.name}'s hand: {player.hand} ({player.hand_value})")
+        print(f"Dealer's hand: {dealer.hand} ({dealer.hand_value})\n")
+        
+        if player.hand_value > 21:
+            print("You bust")
+        elif dealer.hand_value > 21:
+            print("Dealer bust")
+            player.money += player.bet * 2
+blackjack()
